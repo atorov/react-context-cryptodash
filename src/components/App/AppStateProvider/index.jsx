@@ -76,7 +76,7 @@ const saveState = _.throttle(
             console.error('::: Save state in the local storage failed with reason:', reason)
         }
     },
-    550,
+    55550,
     { 'leading': false },
 )
 
