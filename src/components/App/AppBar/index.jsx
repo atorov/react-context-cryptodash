@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import styled from 'styled-components'
+
+import { AppDispatchContext, AppStateContext } from '../AppStateProvider'
 
 const Bar = styled.div`
     display: grid;
@@ -21,9 +23,18 @@ function toProperCase(str) {
     return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase()
 }
 
-function ControlButton({ active, name }) {
+function ControlButton({ name }) {
+    const dispatch = useContext(AppDispatchContext)
+    const { page } = useContext(AppStateContext)
+
     return (
-        <ControlButtonElem active={active}>
+        <ControlButtonElem
+            active={page === name}
+            onClick={() => dispatch({
+                type: ':SET_PAGE:',
+                payload: { page: name },
+            })}
+        >
             {toProperCase(name)}
         </ControlButtonElem>
     )
@@ -34,7 +45,7 @@ export default function () {
         <Bar>
             <Logo>CryptoDash</Logo>
             <div />
-            <ControlButton active name="dashboard" />
+            <ControlButton name="dashboard" />
             <ControlButton name="settings" />
         </Bar>
     )
