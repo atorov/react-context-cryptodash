@@ -1,13 +1,18 @@
 import React from 'react'
 
+import AppLayout from './AppLayout'
+
+import AppBar from './AppLayout/AppBar'
+
 import './index.css'
 
 class App extends React.Component {
     render() {
         return (
-            <div>
+            <AppLayout>
+                <AppBar />
                 App
-            </div>
+            </AppLayout>
         )
     }
 }
