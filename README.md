@@ -1,3 +1,17 @@
+# React Cryptocurrency Dashboard
+
+- React
+- styled-components
+- HighCharts
+- CSS grid
+- Google fonts
+- CryptoCompare API
+- Fuzzy search
+- Webkit inspector
+- async/await
+- localStorage
+- lodash
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
