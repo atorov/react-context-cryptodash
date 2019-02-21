@@ -3,6 +3,7 @@ import React from 'react'
 import AppBar from './AppBar'
 import AppLayout from './AppLayout'
 import { AppStateProvider } from './AppStateProvider'
+import Settings from '../Settings'
 
 import './index.css'
 
@@ -12,7 +13,7 @@ class App extends React.Component {
             <AppStateProvider>
                 <AppLayout>
                     <AppBar />
-                    App
+                    <Settings />
                 </AppLayout>
             </AppStateProvider>
         )
