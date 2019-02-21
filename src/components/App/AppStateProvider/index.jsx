@@ -2,10 +2,23 @@ import React, { useEffect, useReducer, useRef } from 'react'
 
 import _ from 'lodash'
 
+const cc = require('cryptocompare')
+
 const initState = getInitState()
 
 export const AppDispatchContext = React.createContext(() => { })
 export const AppStateContext = React.createContext(initState)
+
+async function fetchCoinList() {
+    let coinList = {}
+    try {
+        coinList = await cc.coinList()
+    } catch (reason) {
+        console.log('::: reason:', reason)
+    }
+
+    return coinList
+}
 
 function reducer(state, action) {
     switch (action.type) {
@@ -14,6 +27,12 @@ function reducer(state, action) {
                 ...state,
                 firstVisit: false,
                 page: 'dashboard',
+            }
+
+        case ':SET_COIN_LIST:':
+            return {
+                ...state,
+                coinList: action.payload.coinList,
             }
 
         case ':SET_PAGE:':
@@ -40,6 +59,7 @@ function getInitState() {
     }
 
     return {
+        coinList: {},
         firstVisit: true,
         page: 'settings',
         ...savedState,
@@ -67,14 +87,32 @@ export function AppStateProvider(props) {
 
     useEffect(
         () => {
-            isMountedRef.current
-                ? saveState(state)
-                : isMountedRef.current = true
+            if (isMountedRef.current) {
+                saveState(state)
+            }
+            else {
+                isMountedRef.current = true
+            }
         },
         [state],
     )
 
-    // useEffect(() => () => isMountedRef.current = false, [])
+    useEffect(() => () => isMountedRef.current = false, [])
+
+    useEffect(
+        () => {
+            (async () => {
+                const coinList = await fetchCoinList()
+                if (coinList && coinList.Data && isMountedRef.current) {
+                    dispatch({
+                        type: ':SET_COIN_LIST:',
+                        payload: { coinList: coinList.Data },
+                    })
+                }
+            })()
+        },
+        [],
+    )
 
     return (
         <AppStateContext.Provider value={state}>
