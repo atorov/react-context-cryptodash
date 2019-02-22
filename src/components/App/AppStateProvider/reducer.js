@@ -31,6 +31,12 @@ export default function (state, action) {
                 coinList: action.payload.coinList,
             }
 
+        case ':SET_FILTERED_COINS:':
+            return {
+                ...state,
+                filteredCoins: action.payload.filteredCoins,
+            }
+
         case ':SET_PAGE:':
             return {
                 ...state,
