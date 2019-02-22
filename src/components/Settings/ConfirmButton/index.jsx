@@ -4,6 +4,8 @@ import styled from 'styled-components'
 
 import { AppDispatchContext } from '../../App/AppStateProvider'
 
+import * as styles from '../../Shared/styles'
+
 const CenterDiv = styled.div`
     display: grid;
     justify-content: center;
@@ -11,8 +13,13 @@ const CenterDiv = styled.div`
 
 const StyledConfirmButton = styled.div`
     margin: 20px;
-    color: green;
+    color: ${styles.color3};
+    ${styles.fontSize1}
+    padding: 5px;
     cursor: pointer;
+    &:hover {
+        ${styles.greenBoxShadow}
+    }
 `
 
 export default function () {
