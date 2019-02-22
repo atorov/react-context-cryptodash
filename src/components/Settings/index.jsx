@@ -1,5 +1,6 @@
 import React from 'react'
 
+import CoinGrid from './CoinGrid'
 import ConfirmButton from './ConfirmButton'
 import WelcomeMessage from './WelcomeMessage'
 
@@ -10,6 +11,7 @@ export default function () {
         <Page name="settings">
             <WelcomeMessage />
             <ConfirmButton />
+            <CoinGrid />
         </Page>
     )
 }
