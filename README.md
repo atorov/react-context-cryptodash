@@ -1,6 +1,6 @@
 # React Cryptocurrency Dashboard
 
-- React
+- React context, hooks, and custom hooks
 - styled-components
 - HighCharts
 - CSS grid
