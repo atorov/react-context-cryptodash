@@ -3,24 +3,30 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 
 import { AppStateContext } from '../../App/AppStateProvider'
-
-import { SelectableTile } from '../../Shared/Tile'
+import CoinTile from '../CoinTile'
 
 const StyledCoinGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 15px;
+    margin-top: 40px;
 `
+
+function getCoinsToDisplay(data = {}) {
+    return Object.keys(data).slice(0, 100)
+}
+
 export default function () {
     const { coinList: { data } } = useContext(AppStateContext)
 
     return (
         <StyledCoinGrid>
-            {data && Object.keys(data).map((coinKey) => {
+            {getCoinsToDisplay(data).map((coinKey) => {
                 return (
-                    <SelectableTile key={coinKey}>
-                        {coinKey}
-                    </SelectableTile>
+                    <CoinTile
+                        key={coinKey}
+                        coinKey={coinKey}
+                    />
                 )
             })}
         </StyledCoinGrid>
