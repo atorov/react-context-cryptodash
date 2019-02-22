@@ -1,6 +1,9 @@
 import React, { useContext } from 'react'
 
-import { AppStateContext } from '../../App/AppStateProvider'
+import {
+    AppDispatchContext,
+    AppStateContext,
+} from '../../App/AppStateProvider'
 import {
     DeletableTile,
     DisableTile,
@@ -11,7 +14,11 @@ import CoinImage from '../../Shared/CoinImage';
 import CoinHeaderGrid from '../CoinHeaderGrid'
 
 export default function ({ coinKey, topSection }) {
-    const { coinList: { data } } = useContext(AppStateContext)
+    const dispatch = useContext(AppDispatchContext)
+    const {
+        coinList: { data },
+        favorites,
+    } = useContext(AppStateContext)
 
     if (!data) {
         return null
@@ -23,9 +30,21 @@ export default function ({ coinKey, topSection }) {
     if (topSection) {
         TileClass = DeletableTile
     }
+    else if (favorites.includes(coinKey)) {
+        TileClass = DisableTile
+    }
 
     return (
-        <TileClass>
+        <TileClass onClick={topSection
+            ? () => dispatch({
+                type: ':REMOVE_COIN:',
+                payload: { coinKey }
+            })
+            : () => dispatch({
+                type: ':ADD_COIN:',
+                payload: { coinKey }
+            })
+        }>
             <CoinHeaderGrid
                 {...coin}
                 topSection={topSection}
