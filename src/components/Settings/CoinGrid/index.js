@@ -4,9 +4,12 @@ import styled from 'styled-components'
 
 import { AppStateContext } from '../../App/AppStateProvider'
 
+import { SelectableTile } from '../../Shared/Tile'
+
 const StyledCoinGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(5, 1fr)
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 15px;
 `
 export default function () {
     const { coinList: { data } } = useContext(AppStateContext)
@@ -15,9 +18,9 @@ export default function () {
         <StyledCoinGrid>
             {data && Object.keys(data).map((coinKey) => {
                 return (
-                    <div key={coinKey}>
+                    <SelectableTile key={coinKey}>
                         {coinKey}
-                    </div>
+                    </SelectableTile>
                 )
             })}
         </StyledCoinGrid>
