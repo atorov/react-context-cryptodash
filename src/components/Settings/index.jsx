@@ -10,6 +10,7 @@ export default function () {
     return (
         <Page name="settings">
             <WelcomeMessage />
+            <CoinGrid topSection />
             <ConfirmButton />
             <CoinGrid />
         </Page>

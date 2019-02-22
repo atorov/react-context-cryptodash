@@ -1,12 +1,16 @@
 import React, { useContext } from 'react'
 
 import { AppStateContext } from '../../App/AppStateProvider'
-import { SelectableTile } from '../../Shared/Tile';
+import {
+    DeletableTile,
+    DisableTile,
+    SelectableTile,
+} from '../../Shared/Tile';
 import CoinImage from '../../Shared/CoinImage';
 
 import CoinHeaderGrid from '../CoinHeaderGrid'
 
-export default function ({ coinKey }) {
+export default function ({ coinKey, topSection }) {
     const { coinList: { data } } = useContext(AppStateContext)
 
     if (!data) {
@@ -15,11 +19,17 @@ export default function ({ coinKey }) {
 
     const coin = data[coinKey]
 
-    const TileClass = SelectableTile
+    let TileClass = SelectableTile
+    if (topSection) {
+        TileClass = DeletableTile
+    }
 
     return (
         <TileClass>
-            <CoinHeaderGrid {...coin} />
+            <CoinHeaderGrid
+                {...coin}
+                topSection={topSection}
+            />
             <CoinImage coin={coin} />
         </TileClass>
     )
