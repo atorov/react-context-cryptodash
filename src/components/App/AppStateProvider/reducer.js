@@ -3,6 +3,7 @@ const MAX_FAVORITES = 10
 export default function (state, action) {
     switch (action.type) {
         case ':ADD_COIN:':
+            console.log(':ADD_COIN:')
             const favorites = [...state.favorites]
             if (favorites.length < MAX_FAVORITES) {
                 favorites.push(action.payload.coinKey)
@@ -13,6 +14,7 @@ export default function (state, action) {
             }
 
         case ':CONFIRM_FAVORITES:':
+            console.log(':CONFIRM_FAVORITES:')
             return {
                 ...state,
                 firstVisit: false,
@@ -20,24 +22,35 @@ export default function (state, action) {
             }
 
         case ':REMOVE_COIN:':
+            console.log(':REMOVE_COIN:')
             return {
                 ...state,
                 favorites: state.favorites.filter(key => key !== action.payload.coinKey),
             }
 
         case ':SET_COIN_LIST:':
+            console.log(':SET_COIN_LIST:')
             return {
                 ...state,
                 coinList: action.payload.coinList,
             }
 
+        case ':SET_COIN_PRICES:':
+            console.log(':SET_COIN_PRICES:')
+            return {
+                ...state,
+                prices: action.payload.prices,
+            }
+
         case ':SET_FILTERED_COINS:':
+            console.log(':SET_FILTERED_COINS:')
             return {
                 ...state,
                 filteredCoins: action.payload.filteredCoins,
             }
 
         case ':SET_PAGE:':
+            console.log(':SET_PAGE:')
             return {
                 ...state,
                 page: action.payload.page,

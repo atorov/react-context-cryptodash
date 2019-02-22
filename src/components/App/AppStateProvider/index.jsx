@@ -1,7 +1,5 @@
 import React, { useEffect, useReducer, useRef } from 'react'
 
-import useCoinList from '../../../hooks/use-coin-list'
-
 import getInitState from './get-init-state'
 import reducer from './reducer'
 import saveState from './save-state'
@@ -16,20 +14,6 @@ export function AppStateProvider(props) {
 
     const [state, dispatch] = useReducer(reducer, initState)
     console.log('::: App.state:', state)
-
-    const coinList = useCoinList()
-
-    useEffect(
-        () => {
-            if (coinList && coinList.data && isMountedRef.current) {
-                dispatch({
-                    type: ':SET_COIN_LIST:',
-                    payload: { coinList },
-                })
-            }
-        },
-        [coinList],
-    )
 
     useEffect(
         () => {

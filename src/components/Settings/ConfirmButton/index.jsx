@@ -3,7 +3,6 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 
 import { AppDispatchContext } from '../../App/AppStateProvider'
-
 import * as styles from '../../Shared/styles'
 
 const CenterDiv = styled.div`

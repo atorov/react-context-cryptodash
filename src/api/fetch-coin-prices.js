@@ -2,14 +2,14 @@ import delay from '../lib/delay'
 
 const cc = require('cryptocompare')
 
-export default async function (t = 0) {
-    let coinList = {}
+export default async function (coins = ['BTC'], currency = 'USD', t = 0) {
+    let coinPrices = {}
     try {
         await delay(t)
-        coinList = await cc.coinList()
+        coinPrices = await cc.priceFull(coins, currency)
     } catch (reason) {
         console.log('::: reason:', reason)
     }
 
-    return coinList
+    return coinPrices
 }

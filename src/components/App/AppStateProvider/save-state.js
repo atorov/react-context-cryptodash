@@ -5,7 +5,10 @@ export default _.throttle(
         try {
             const serialized = JSON.stringify({
                 ...state,
-                coinList: {},
+                coinList: {
+                    status: '',
+                    data: {},
+                },
             })
             window.localStorage.setItem('cryptoDash', serialized)
             console.log('::: State has been saved to the local storage')

@@ -5,6 +5,7 @@ import Content from '../Shared/Content'
 import AppBar from './AppBar'
 import AppLayout from './AppLayout'
 import { AppStateProvider } from './AppStateProvider'
+import Dashboard from '../Dashboard'
 import Settings from '../Settings'
 
 
@@ -18,6 +19,7 @@ class App extends React.Component {
                     <AppBar />
                     <Content>
                         <Settings />
+                        <Dashboard />
                     </Content>
                 </AppLayout>
             </AppStateProvider>
