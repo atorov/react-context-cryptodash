@@ -24,7 +24,7 @@ export function AppStateProvider(props) {
             if (coinList && coinList.data && isMountedRef.current) {
                 dispatch({
                     type: ':SET_COIN_LIST:',
-                    payload: { coinList: coinList.data },
+                    payload: { coinList },
                 })
             }
         },

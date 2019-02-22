@@ -3,7 +3,10 @@ import _ from 'lodash'
 export default _.throttle(
     (state) => {
         try {
-            const serialized = JSON.stringify(state)
+            const serialized = JSON.stringify({
+                ...state,
+                coinList: {},
+            })
             window.localStorage.setItem('cryptoDash', serialized)
             console.log('::: State has been saved to the local storage')
         } catch (reason) {
