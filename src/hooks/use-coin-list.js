@@ -10,7 +10,7 @@ export default function () {
 
     useEffect(
         () => {
-            fetchCoinList(550)
+            fetchCoinList(0)
                 .then(res => {
                     if (res && res.Data) {
                         setCoinList({
