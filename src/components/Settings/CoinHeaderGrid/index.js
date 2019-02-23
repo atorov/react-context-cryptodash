@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { DeletableTile } from '../../Shared/Tile';
 
-const StyledCoinHeaderGrid = styled.div`
+export const StyledCoinHeaderGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
 `
