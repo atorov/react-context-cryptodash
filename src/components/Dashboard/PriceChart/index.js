@@ -11,11 +11,13 @@ import highchartsTheme from './highcharts-theme'
 ReactHighcharts.Highcharts.setOptions(highchartsTheme)
 
 export default function () {
-    const state = useContext(AppStateContext)
+    const { historical } = useContext(AppStateContext)
 
     return (
         <Tile>
-            <ReactHighcharts config={highchartsConfig()} />
+            {historical.status === ':LOADING:' ? 'Loading historical data...' : (
+                <ReactHighcharts config={highchartsConfig(historical.data)} />
+            )}
         </Tile>
     )
 }

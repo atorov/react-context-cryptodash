@@ -7,6 +7,10 @@ export default {
     favorites: ['BTC', 'ETH', 'XRP', 'EOS', 'LTC', 'BCH', 'USDT', 'XLM', 'TRX', 'BNB'],
     filteredCoins: {},
     firstVisit: true,
+    historical: {
+        status: '',
+        data: [],
+    },
     page: 'settings',
     prices: {
         status: '',

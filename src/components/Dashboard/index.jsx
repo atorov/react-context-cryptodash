@@ -3,8 +3,10 @@ import React, {
     useEffect,
 } from 'react'
 
+import moment from 'moment'
 import styled from 'styled-components'
 
+import useCoinHistorical from '../../hooks/use-coin-historical'
 import useCoinPrices from '../../hooks/use-coin-prices'
 
 import {
@@ -17,17 +19,20 @@ import CoinSpotlight from './CoinSpotlight'
 import PriceChart from './PriceChart'
 import PriceGrid from './PriceGrid'
 
+const TIME_UNITS = 36
+
 export default function () {
     const {
         coinList,
+        currentFavorite,
         favorites,
+        historical,
         page,
         prices,
     } = useContext(AppStateContext)
     const dispatch = useContext(AppDispatchContext)
 
     const coinPrices = useCoinPrices(favorites)
-
     useEffect(
         () => {
             if (coinPrices && coinPrices.data) {
@@ -52,7 +57,39 @@ export default function () {
         [coinPrices],
     )
 
-    const isReady = page === 'dashboard' && coinList.status === ':READY:' && prices.status === ':READY:'
+    const coinHistorical = useCoinHistorical(currentFavorite, TIME_UNITS)
+    useEffect(
+        () => {
+            if (coinHistorical && coinHistorical.data) {
+                const payloadStatus = coinHistorical.status;
+                const payloadData = [
+                    {
+                        name: currentFavorite,
+                        data: coinHistorical.data.map((thicker, index) => ([
+                            moment().subtract({ months: TIME_UNITS - index }).valueOf(),
+                            thicker.USD,
+                        ])),
+                    },
+                ]
+                dispatch({
+                    type: ':SET_HISTORICAL:',
+                    payload: {
+                        historical: {
+                            status: payloadStatus,
+                            data: payloadData,
+                        },
+                    },
+                })
+            }
+        },
+        // [coinHistorical],
+        [coinHistorical, currentFavorite],
+    )
+
+    const isReady = page === 'dashboard'
+        && coinList.status === ':READY:'
+        && prices.status === ':READY:'
+        && (historical.status === ':READY:' || historical.status === ':LOADING:')
 
     const StyledChartGrid = styled.div`
         display: grid;

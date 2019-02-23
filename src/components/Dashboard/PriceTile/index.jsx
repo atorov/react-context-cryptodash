@@ -50,7 +50,7 @@ function ChangePercent({ data }) {
     return (
         <StyledJustifyRight>
             <StyledChangePct red={data.CHANGEPCT24HOUR < 0}>
-                {numberFormat(data.CHANGEPCT24HOUR)}
+                {numberFormat(data.CHANGEPCT24HOUR)}%
             </StyledChangePct>
         </StyledJustifyRight>
     )
@@ -103,10 +103,12 @@ export default function ({ price, index }) {
             sym={sym}
             data={data}
             currentFavorite={currentFavorite === sym}
-            handleClick={() => dispatch({
-                type: ':SET_CURRENT_FAVORITE:',
-                payload: { currentFavorite: sym }
-            })}
+            handleClick={() => {
+                dispatch({
+                    type: ':SET_CURRENT_FAVORITE:',
+                    payload: { currentFavorite: sym }
+                })
+            }}
         />
     )
 }

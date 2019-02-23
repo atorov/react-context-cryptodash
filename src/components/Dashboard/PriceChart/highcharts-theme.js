@@ -120,9 +120,7 @@ export default {
         }
     },
     credits: {
-        style: {
-            color: '#666'
-        }
+        enabled: false
     },
     labels: {
         style: {
@@ -198,10 +196,6 @@ export default {
         labelStyle: {
             color: 'silver'
         }
-    },
-
-    credits: {
-        enabled: false
     },
 
     navigator: {

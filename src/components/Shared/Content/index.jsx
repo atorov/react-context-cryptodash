@@ -5,6 +5,7 @@ import { AppStateContext } from '../../App/AppStateProvider'
 export default function (props) {
     const {
         coinList,
+        historical,
         page,
         prices,
     } = useContext(AppStateContext)
@@ -12,7 +13,16 @@ export default function (props) {
     return (
         <>
             {page === 'settings' && coinList.status !== ':READY:' ? 'Loading Coins ...' : null}
-            {page === 'dashboard' && prices.status !== ':READY:' ? 'Loading Prices ...' : null}
+            {page === 'dashboard'
+                && (
+                    coinList.status !== ':READY:'
+                    || prices.status !== ':READY:'
+                    || (
+                        historical.status !== ':READY:'
+                        && historical.status !== ':LOADING:'
+                    )
+                ) ? 'Loading Prices ...' : null
+            }
             {props.children}
         </>
     )

@@ -60,6 +60,13 @@ export default function (state, action) {
                 filteredCoins: action.payload.filteredCoins,
             }
 
+        case ':SET_HISTORICAL:':
+            console.log(':SET_HISTORICAL:')
+            return {
+                ...state,
+                historical: action.payload.historical,
+            }
+
         case ':SET_PAGE:':
             console.log(':SET_PAGE:')
             return {

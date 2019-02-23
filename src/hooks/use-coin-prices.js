@@ -34,7 +34,7 @@ export default function (favorites = []) {
 
     useEffect(
         () => {
-            getCoinPrices(favorites, undefined, 555, setCoinPrices)
+            getCoinPrices(favorites, undefined, 550, setCoinPrices)
         },
         [favorites],
     )
