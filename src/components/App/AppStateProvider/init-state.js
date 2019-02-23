@@ -3,7 +3,7 @@ export default {
         status: '',
         data: {},
     },
-    currentFavorite: '',
+    currentFavorite: 'BTC',
     favorites: ['BTC', 'ETH', 'XRP', 'EOS', 'LTC', 'BCH', 'USDT', 'XLM', 'TRX', 'BNB'],
     filteredCoins: {},
     firstVisit: true,

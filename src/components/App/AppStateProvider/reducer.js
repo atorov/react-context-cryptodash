@@ -24,9 +24,12 @@ export default function (state, action) {
 
         case ':REMOVE_COIN:':
             console.log(':REMOVE_COIN:')
+            const newFavorites = state.favorites.filter(key => key !== action.payload.coinKey)
+            const newCurrentFavorite = newFavorites[0] || newFavorites[0] === 0 || 'BTC'
             return {
                 ...state,
-                favorites: state.favorites.filter(key => key !== action.payload.coinKey),
+                currentFavorite: newCurrentFavorite,
+                favorites: newFavorites,
             }
 
         case ':SET_COIN_LIST:':

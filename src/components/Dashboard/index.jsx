@@ -3,6 +3,8 @@ import React, {
     useEffect,
 } from 'react'
 
+import styled from 'styled-components'
+
 import useCoinPrices from '../../hooks/use-coin-prices'
 
 import {
@@ -11,13 +13,15 @@ import {
 } from '../App/AppStateProvider'
 import Page from '../Shared/Page'
 
+import CoinSpotlight from './CoinSpotlight'
 import PriceGrid from './PriceGrid'
 
 export default function () {
     const {
-        prices,
+        coinList,
         favorites,
         page,
+        prices,
     } = useContext(AppStateContext)
     const dispatch = useContext(AppDispatchContext)
 
@@ -47,11 +51,22 @@ export default function () {
         [coinPrices],
     )
 
-    const isReady = page === 'dashboard' && prices.status === ':READY:'
+    const isReady = page === 'dashboard' && coinList.status === ':READY:' && prices.status === ':READY:'
+
+    const StyledChartGrid = styled.div`
+        display: grid;
+        margin-top: 20px;
+        grid-gap: 15px;
+        grid-template-columns: 1fr 3fr;
+    `
 
     return (
         <Page name={isReady && 'dashboard'}>
             <PriceGrid />
+            <StyledChartGrid>
+                <CoinSpotlight />
+                <div>Chart goes here</div>
+            </StyledChartGrid>
         </Page>
     )
 }
