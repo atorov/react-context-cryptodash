@@ -14,6 +14,7 @@ import {
 import Page from '../Shared/Page'
 
 import CoinSpotlight from './CoinSpotlight'
+import PriceChart from './PriceChart'
 import PriceGrid from './PriceGrid'
 
 export default function () {
@@ -65,7 +66,7 @@ export default function () {
             <PriceGrid />
             <StyledChartGrid>
                 <CoinSpotlight />
-                <div>Chart goes here</div>
+                <PriceChart />
             </StyledChartGrid>
         </Page>
     )
