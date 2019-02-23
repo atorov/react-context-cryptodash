@@ -9,6 +9,6 @@ export default {
     page: 'settings',
     prices: {
         status: '',
-        data: {},
+        data: [],
     },
 }

@@ -11,6 +11,7 @@ import {
 } from '../App/AppStateProvider'
 import Page from '../Shared/Page'
 
+import PriceGrid from './PriceGrid'
 
 export default function () {
     const {
@@ -25,9 +26,21 @@ export default function () {
     useEffect(
         () => {
             if (coinPrices && coinPrices.data) {
+                const payloadStatus = coinPrices.status;
+                const payloadData = []
+                for (const key in coinPrices.data) {
+                    if (coinPrices.data.hasOwnProperty(key)) {
+                        payloadData.push({ [key]: coinPrices.data[key] })
+                    }
+                }
                 dispatch({
                     type: ':SET_COIN_PRICES:',
-                    payload: { prices: coinPrices },
+                    payload: {
+                        prices: {
+                            status: payloadStatus,
+                            data: payloadData,
+                        },
+                    },
                 })
             }
         },
@@ -38,7 +51,7 @@ export default function () {
 
     return (
         <Page name={isReady && 'dashboard'}>
-            Dashboard...
+            <PriceGrid />
         </Page>
     )
 }
