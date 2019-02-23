@@ -19,7 +19,7 @@ import CoinSpotlight from './CoinSpotlight'
 import PriceChart from './PriceChart'
 import PriceGrid from './PriceGrid'
 
-const TIME_UNITS = 36
+const TIME_UNITS = 12
 
 export default function () {
     const {
