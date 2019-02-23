@@ -17,6 +17,7 @@ export default function (state, action) {
             console.log(':CONFIRM_FAVORITES:')
             return {
                 ...state,
+                currentFavorite: state.favorites[0] || 'BTC',
                 firstVisit: false,
                 page: 'dashboard',
             }
@@ -40,6 +41,13 @@ export default function (state, action) {
             return {
                 ...state,
                 prices: action.payload.prices,
+            }
+
+        case ':SET_CURRENT_FAVORITE:':
+            console.log(':SET_CURRENT_FAVORITE:')
+            return {
+                ...state,
+                currentFavorite: action.payload.currentFavorite,
             }
 
         case ':SET_FILTERED_COINS:':

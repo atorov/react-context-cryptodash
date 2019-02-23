@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import styled, { css } from 'styled-components'
 
+import {
+    AppDispatchContext,
+    AppStateContext,
+} from '../../App/AppStateProvider'
 import { StyledCoinHeaderGrid } from '../../Settings/CoinHeaderGrid'
 import * as styles from '../../Shared/styles'
 import { SelectableTile } from '../../Shared/Tile'
@@ -20,6 +24,11 @@ const StyledJustifyRight = styled.div`
     justify-self: right;
 `
 
+const cssStyledPriceTileCurrFav = css`
+    ${styles.greenBoxShadow}
+    pointer-events: none;
+`
+
 const cssStyledPriceTileCompact = css`
     display: grid;
     ${styles.fontSize3}
@@ -30,6 +39,7 @@ const cssStyledPriceTileCompact = css`
 
 const StyledPriceTile = styled(SelectableTile)`
     ${props => props.compact && cssStyledPriceTileCompact}
+    ${props => props.currentFavorite && cssStyledPriceTileCurrFav}
 `
 
 const StyledTickerPrice = styled.div`
@@ -46,9 +56,12 @@ function ChangePercent({ data }) {
     )
 }
 
-function PriceTile({ sym, data }) {
+function PriceTile({ sym, data, currentFavorite, handleClick }) {
     return (
-        <StyledPriceTile>
+        <StyledPriceTile
+            currentFavorite={currentFavorite}
+            onClick={handleClick}
+        >
             <StyledCoinHeaderGrid>
                 <div>{sym}</div>
                 <ChangePercent data={data} />
@@ -60,9 +73,13 @@ function PriceTile({ sym, data }) {
     )
 }
 
-function PriceTileCompact({ sym, data }) {
+function PriceTileCompact({ sym, data, currentFavorite, handleClick }) {
     return (
-        <StyledPriceTile compact>
+        <StyledPriceTile
+            compact
+            currentFavorite={currentFavorite}
+            onClick={handleClick}
+        >
             <StyledJustifyLeft>
                 {sym}
             </StyledJustifyLeft>
@@ -73,12 +90,23 @@ function PriceTileCompact({ sym, data }) {
 }
 
 export default function ({ price, index }) {
+    const dispatch = useContext(AppDispatchContext)
+    const { currentFavorite } = useContext(AppStateContext)
+
     const sym = Object.keys(price)[0]
     const data = price[sym]['USD']
 
     const TileClass = index < 5 ? PriceTile : PriceTileCompact
 
     return (
-        <TileClass sym={sym} data={data} />
+        <TileClass
+            sym={sym}
+            data={data}
+            currentFavorite={currentFavorite === sym}
+            handleClick={() => dispatch({
+                type: ':SET_CURRENT_FAVORITE:',
+                payload: { currentFavorite: sym }
+            })}
+        />
     )
 }
