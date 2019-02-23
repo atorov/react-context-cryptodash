@@ -14,7 +14,7 @@ export default async function (
     try {
         await delay(t)
         const promises = []
-        for (let i = 0; i < timeUnits; i++) {
+        for (let i = timeUnits; i >= 0; i--) {
             promises.push(cc.priceHistorical(
                 currentFavorite,
                 currency,
