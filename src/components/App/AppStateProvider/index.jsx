@@ -13,7 +13,7 @@ export function AppStateProvider(props) {
     const isMountedRef = useRef(false)
 
     const [state, dispatch] = useReducer(reducer, initState)
-    console.log('::: App.state:', state)
+    // console.log('::: App.state:', state)
 
     useEffect(
         () => {

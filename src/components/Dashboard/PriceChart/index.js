@@ -32,7 +32,7 @@ export default function () {
 
             {
                 historical.status === ':LOADING:'
-                    ? <div>'Loading historical data...'</div>
+                    ? <div>Loading historical data...</div>
                     : <ReactHighcharts config={highchartsConfig(historical.data)} />
             }
         </Tile >
