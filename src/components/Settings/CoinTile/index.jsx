@@ -52,6 +52,4 @@ export default function ({ coinKey, topSection }) {
             <CoinImage coin={coin} />
         </TileClass>
     )
-
-
 }

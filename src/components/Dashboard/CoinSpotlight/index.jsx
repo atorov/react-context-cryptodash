@@ -11,10 +11,7 @@ const StyledSpotlightName = styled.h2`
 `
 
 export default function () {
-    const {
-        coinList,
-        currentFavorite,
-    } = useContext(AppStateContext)
+    const { coinList, currentFavorite } = useContext(AppStateContext)
 
     const currFavoriteObject = coinList.data[currentFavorite]
 

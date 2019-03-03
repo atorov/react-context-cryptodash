@@ -2,10 +2,7 @@ import React, { useContext } from 'react'
 
 import styled, { css } from 'styled-components'
 
-import {
-    AppDispatchContext,
-    AppStateContext,
-} from '../../App/AppStateProvider'
+import { AppDispatchContext, AppStateContext } from '../../App/AppStateProvider'
 import { StyledCoinHeaderGrid } from '../../Settings/CoinHeaderGrid'
 import * as styles from '../../Shared/styles'
 import { SelectableTile } from '../../Shared/Tile'

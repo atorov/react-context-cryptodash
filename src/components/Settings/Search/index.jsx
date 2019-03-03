@@ -7,10 +7,7 @@ import React, {
 import _ from 'lodash'
 import styled from 'styled-components'
 
-import {
-    AppDispatchContext,
-    AppStateContext,
-} from '../../App/AppStateProvider'
+import { AppDispatchContext, AppStateContext } from '../../App/AppStateProvider'
 import * as styles from '../../Shared/styles'
 
 import getFilterCoins from './get-filtered-coins'

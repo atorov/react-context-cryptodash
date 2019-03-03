@@ -1,7 +1,4 @@
-import React, {
-    useContext,
-    useEffect,
-} from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import moment from 'moment'
 import styled from 'styled-components'
@@ -9,10 +6,7 @@ import styled from 'styled-components'
 import useCoinHistorical from '../../hooks/use-coin-historical'
 import useCoinPrices from '../../hooks/use-coin-prices'
 
-import {
-    AppDispatchContext,
-    AppStateContext,
-} from '../App/AppStateProvider'
+import { AppDispatchContext, AppStateContext } from '../App/AppStateProvider'
 import Page from '../Shared/Page'
 
 import CoinSpotlight from './CoinSpotlight'

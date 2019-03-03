@@ -1,14 +1,8 @@
-import React, {
-    useContext,
-    useEffect,
-} from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import useCoinList from '../../hooks/use-coin-list'
 
-import {
-    AppDispatchContext,
-    AppStateContext,
-} from '../App/AppStateProvider'
+import { AppDispatchContext, AppStateContext } from '../App/AppStateProvider'
 import Page from '../Shared/Page'
 
 import CoinGrid from './CoinGrid'
