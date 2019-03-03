@@ -16,4 +16,6 @@ export default {
         status: '',
         data: [],
     },
+    timeUnits: 12,
+    timeInterval: 'months',
 }

@@ -5,8 +5,8 @@ import _ from 'lodash'
 import fetchCoinHistorical from '../api/fetch-coin-historical'
 
 const getCoinHistorical = _.throttle(
-    (currentFavorite, currency, timeUnits, t, setCoinHistorical) => {
-        fetchCoinHistorical(currentFavorite, currency, timeUnits, t)
+    (currentFavorite, currency, timeUnits, timeInterval, t, setCoinHistorical) => {
+        fetchCoinHistorical(currentFavorite, currency, timeUnits, timeInterval, t)
             .then(res => {
                 if (res) {
                     setCoinHistorical({
@@ -26,7 +26,7 @@ const getCoinHistorical = _.throttle(
     { 'leading': false },
 )
 
-export default function (currentFavorite, timeUnits) {
+export default function (currentFavorite, timeUnits, timeInterval) {
     const [coinHistorical, setCoinHistorical] = useState({
         status: '',
         data: [],
@@ -38,9 +38,9 @@ export default function (currentFavorite, timeUnits) {
                 status: ':LOADING:',
                 data: [],
             })
-            getCoinHistorical(currentFavorite, ['USD'], timeUnits, 550, setCoinHistorical)
+            getCoinHistorical(currentFavorite, ['USD'], timeUnits, timeInterval, 550, setCoinHistorical)
         },
-        [currentFavorite],
+        [currentFavorite, timeInterval],
     )
 
     return coinHistorical

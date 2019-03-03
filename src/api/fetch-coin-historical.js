@@ -8,6 +8,7 @@ export default async function (
     currentFavorite = 'BTC',
     currency = ['USD'],
     timeUnits = 10,
+    timeInterval = 'months',
     t = 0
 ) {
     let coinHistorical = {}
@@ -18,7 +19,7 @@ export default async function (
             promises.push(cc.priceHistorical(
                 currentFavorite,
                 currency,
-                moment().subtract({ months: i }).toDate()
+                moment().subtract({ [timeInterval]: i }).toDate()
             ))
             await delay(100)
         }

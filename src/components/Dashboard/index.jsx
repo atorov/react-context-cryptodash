@@ -19,8 +19,6 @@ import CoinSpotlight from './CoinSpotlight'
 import PriceChart from './PriceChart'
 import PriceGrid from './PriceGrid'
 
-const TIME_UNITS = 12
-
 export default function () {
     const {
         coinList,
@@ -29,6 +27,8 @@ export default function () {
         historical,
         page,
         prices,
+        timeInterval,
+        timeUnits,
     } = useContext(AppStateContext)
     const dispatch = useContext(AppDispatchContext)
 
@@ -57,7 +57,7 @@ export default function () {
         [coinPrices],
     )
 
-    const coinHistorical = useCoinHistorical(currentFavorite, TIME_UNITS)
+    const coinHistorical = useCoinHistorical(currentFavorite, timeUnits, timeInterval)
     useEffect(
         () => {
             if (coinHistorical && coinHistorical.data) {
@@ -66,7 +66,7 @@ export default function () {
                     {
                         name: currentFavorite,
                         data: coinHistorical.data.map((thicker, index) => ([
-                            moment().subtract({ months: TIME_UNITS - index }).valueOf(),
+                            moment().subtract({ [timeInterval]: timeUnits - index }).valueOf(),
                             thicker.USD,
                         ])),
                     },

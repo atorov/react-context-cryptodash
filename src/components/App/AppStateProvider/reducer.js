@@ -74,6 +74,13 @@ export default function (state, action) {
                 page: action.payload.page,
             }
 
+        case ':SET_TIME_INTERVAL:':
+            console.log(':SET_TIME_INTERVAL:')
+            return {
+                ...state,
+                timeInterval: action.payload.timeInterval,
+            }
+
         default:
             throw new Error('Action type does not match!')
         // return state
